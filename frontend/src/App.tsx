@@ -3,6 +3,7 @@ import { Home } from "./components/Home";
 import { AmazonCalculator } from "./components/AmazonCalculator";
 import { ShopeeCalculator } from "./components/ShopeeCalculator";
 import { MercadoLivreCalculator } from "./components/MercadoLivreCalculator";
+import { SimpleCalculator } from "./components/SimpleCalculator";
 import { LabelConverter } from "./components/LabelConverter";
 import { ProductResearchSoon } from "./components/ProductResearchSoon";
 import { PricingGuide } from "./components/PricingGuide";
@@ -12,6 +13,7 @@ type TabId =
   | "amazon"
   | "shopee"
   | "mercado-livre"
+  | "simplificada"
   | "etiquetas"
   | "como-precificar"
   | "pesquisa";
@@ -27,6 +29,7 @@ const TABS: Tab[] = [
   { id: "amazon", label: "Amazon" },
   { id: "shopee", label: "Shopee" },
   { id: "mercado-livre", label: "Mercado Livre" },
+  { id: "simplificada", label: "Simplificada" },
   { id: "etiquetas", label: "Etiquetas" },
   { id: "como-precificar", label: "Como Precificar?" },
   { id: "pesquisa", label: "Pesquisa de produto", badge: "em breve" },
@@ -83,6 +86,7 @@ function App() {
         {activeTab === "amazon" ? <AmazonCalculator /> : null}
         {activeTab === "shopee" ? <ShopeeCalculator /> : null}
         {activeTab === "mercado-livre" ? <MercadoLivreCalculator /> : null}
+        {activeTab === "simplificada" ? <SimpleCalculator /> : null}
         {activeTab === "etiquetas" ? <LabelConverter /> : null}
         {activeTab === "como-precificar" ? <PricingGuide /> : null}
         {activeTab === "pesquisa" ? <ProductResearchSoon /> : null}

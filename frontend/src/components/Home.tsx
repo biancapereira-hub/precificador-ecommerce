@@ -4,6 +4,7 @@ export type ToolId =
   | "amazon"
   | "shopee"
   | "mercado-livre"
+  | "simplificada"
   | "pesquisa"
   | "etiquetas"
   | "como-precificar";
@@ -36,6 +37,13 @@ const TOOLS: Tool[] = [
     title: "Calculadora Mercado Livre",
     description:
       "Anuncio Classico ou Premium, com comissao, custo fixo e frete editaveis por categoria.",
+    available: true,
+  },
+  {
+    id: "simplificada",
+    title: "Calculadora simplificada",
+    description:
+      "Ja descontou as taxas? Informe so o custo e o valor que vai receber para ver a proporcao liquido / custo.",
     available: true,
   },
   {
