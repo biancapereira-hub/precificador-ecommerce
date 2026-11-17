@@ -255,6 +255,66 @@ export function shopeeResult(cost: number, price: number): ShopeeResult {
   return { cost, price, fee, netValue, ratio };
 }
 
+// =========================== TIKTOK SHOP ===========================
+// Comissão: abaixo de R$ 50 = 10% + R$ 4,00; R$ 50 ou mais = 6% + R$ 6,00.
+// Programa de Frete (SFP), se inscrito: +6% sobre o preço de venda.
+
+export const TIKTOK_SFP_RATE = 0.06;
+
+const TIKTOK_BANDS = [
+  { rate: 0.1, fixed: 4.0, min: 0, max: 50 },
+  { rate: 0.06, fixed: 6.0, min: 50, max: Infinity },
+] as const;
+
+export type TikTokOptions = {
+  sfp: boolean;
+  extraRate: number;
+  extraFixed: number;
+};
+
+export type TikTokFee = {
+  commissionRate: number;
+  commissionFixed: number;
+  commission: number;
+  sfp: number;
+  extra: number;
+  total: number;
+};
+
+export function tiktokFee(price: number, options: TikTokOptions): TikTokFee {
+  const band = price < 50 ? TIKTOK_BANDS[0] : TIKTOK_BANDS[1];
+  const commission = price * band.rate + band.fixed;
+  const sfp = options.sfp ? price * TIKTOK_SFP_RATE : 0;
+  const extra = price * options.extraRate + options.extraFixed;
+  return {
+    commissionRate: band.rate,
+    commissionFixed: band.fixed,
+    commission,
+    sfp,
+    extra,
+    total: commission + sfp + extra,
+  };
+}
+
+export type TikTokResult = {
+  cost: number;
+  price: number;
+  fee: TikTokFee;
+  netValue: number;
+  ratio: number;
+};
+
+export function tiktokResult(
+  cost: number,
+  price: number,
+  options: TikTokOptions,
+): TikTokResult {
+  const fee = tiktokFee(price, options);
+  const netValue = price - fee.total;
+  const ratio = cost > 0 ? netValue / cost : 0;
+  return { cost, price, fee, netValue, ratio };
+}
+
 // ========================= MERCADO LIVRE =========================
 
 // Faixas de comissão do Mercado Livre por tipo de anúncio. A porcentagem exata
@@ -410,6 +470,25 @@ export function suggestShopeePrice(
   for (const band of bands) {
     const price = (target * cost + band.fixed) / (1 - band.rate);
     if (price <= band.max + 0.0001) return roundUpCents(price);
+  }
+  return null;
+}
+
+// V = (C * alvo + fixo + extrasFixos) / (1 - comissão% - SFP% - extras%),
+// testando primeiro a faixa abaixo de R$ 50 e depois a de R$ 50 ou mais.
+export function suggestTikTokPrice(
+  cost: number,
+  options: TikTokOptions,
+  target = 1.2,
+): number | null {
+  if (!Number.isFinite(cost) || cost <= 0) return null;
+  const sfpRate = options.sfp ? TIKTOK_SFP_RATE : 0;
+  for (const band of TIKTOK_BANDS) {
+    const divisor = 1 - band.rate - sfpRate - options.extraRate;
+    if (divisor <= 0) return null;
+    const price =
+      (target * cost + band.fixed + options.extraFixed) / divisor;
+    if (price < band.max) return roundUpCents(Math.max(price, band.min));
   }
   return null;
 }

@@ -4,6 +4,7 @@ export type ToolId =
   | "amazon"
   | "shopee"
   | "mercado-livre"
+  | "tiktok"
   | "simplificada"
   | "pesquisa"
   | "etiquetas"
@@ -37,6 +38,13 @@ const TOOLS: Tool[] = [
     title: "Calculadora Mercado Livre",
     description:
       "Anuncio Classico ou Premium, com comissao, custo fixo e frete editaveis por categoria.",
+    available: true,
+  },
+  {
+    id: "tiktok",
+    title: "Calculadora Tik Tok",
+    description:
+      "Comissao do TikTok Shop por faixa (abaixo de R$ 50 ou acima), Programa de Frete e outros custos. Sugere o preco para a proporcao alvo.",
     available: true,
   },
   {
