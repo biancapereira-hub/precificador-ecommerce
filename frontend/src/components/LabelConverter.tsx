@@ -11,21 +11,21 @@ import {
 } from "./common";
 
 const DENSITY_OPTIONS = [
-  "203 dpi (8 pontos/mm) - padrao",
+  "203 dpi (8 pontos/mm) - padrão",
   "152 dpi (6 pontos/mm)",
   "300 dpi (12 pontos/mm)",
   "600 dpi (24 pontos/mm)",
 ] as const;
 
 const DENSITY_TO_DPMM: Record<string, string> = {
-  "203 dpi (8 pontos/mm) - padrao": "8",
+  "203 dpi (8 pontos/mm) - padrão": "8",
   "152 dpi (6 pontos/mm)": "6",
   "300 dpi (12 pontos/mm)": "12",
   "600 dpi (24 pontos/mm)": "24",
 };
 
 const CONTRAST_OPTIONS = [
-  "Alto contraste (escuro) - ideal para impressao",
+  "Alto contraste (escuro) - ideal para impressão",
   "Normal (sem ajuste)",
 ] as const;
 
@@ -203,7 +203,7 @@ export function LabelConverter() {
     const content = zpl.trim();
     if (!content.includes("^XA")) {
       setError(
-        "Cole um codigo ZPL valido ou envie um arquivo. O ZPL deve conter ao menos um bloco iniciando com ^XA.",
+        "Cole um código ZPL válido ou envie um arquivo. O ZPL deve conter ao menos um bloco iniciando com ^XA.",
       );
       return;
     }
@@ -211,7 +211,7 @@ export function LabelConverter() {
     const height = parseInches(heightIn);
     if (width === null || height === null) {
       setError(
-        "Informe largura e altura validas em polegadas (entre 0 e 15). Ex: 4 x 6.",
+        "Informe largura e altura válidas em polegadas (entre 0 e 15). Ex: 4 x 6.",
       );
       return;
     }
@@ -253,7 +253,7 @@ export function LabelConverter() {
 
       if (canvases.length === 0) {
         throw new Error(
-          "Nenhuma etiqueta foi gerada pelo Labelary. Verifique se o ZPL esta correto.",
+          "Nenhuma etiqueta foi gerada pelo Labelary. Verifique se o ZPL está correto.",
         );
       }
 
@@ -301,15 +301,15 @@ export function LabelConverter() {
       <PageHeader
         eyebrow="Etiquetas"
         title="ZPL para PDF"
-        description="Cole o codigo ZPL ou envie um arquivo (.zpl, .txt, .prn) e gere um PDF pronto para impressao. Cada etiqueta (bloco ^XA ... ^XZ) vira uma pagina."
+        description="Cole o código ZPL ou envie um arquivo (.zpl, .txt, .prn) e gere um PDF pronto para impressão. Cada etiqueta (bloco ^XA ... ^XZ) vira uma página."
       />
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
         <Card>
           <div className="space-y-4">
             <Field
-              label="Codigo ZPL"
-              hint="Cole aqui o conteudo ZPL. Voce tambem pode enviar um arquivo abaixo."
+              label="Código ZPL"
+              hint="Cole aqui o conteúdo ZPL. Você também pode enviar um arquivo abaixo."
             >
               <textarea
                 value={zpl}
@@ -353,8 +353,8 @@ export function LabelConverter() {
             </Field>
 
             <Field
-              label="Contraste da impressao"
-              hint="'Alto contraste' escurece textos e codigos de barras para ficarem bem visiveis na impressora termica. Use 'Normal' apenas se a etiqueta ja estiver escura o suficiente."
+              label="Contraste da impressão"
+              hint="'Alto contraste' escurece textos e códigos de barras para ficarem bem visíveis na impressora térmica. Use 'Normal' apenas se a etiqueta já estiver escura o suficiente."
             >
               <SelectField
                 value={contrast}
@@ -423,8 +423,8 @@ export function LabelConverter() {
             </div>
 
             <p className="text-xs text-muted-foreground">
-              Tem impressora Zebra/ZPL? O resultado mais fiel e enviar o arquivo
-              ZPL direto para a impressora (botao "Baixar ZPL"), sem passar por
+              Tem impressora Zebra/ZPL? O resultado mais fiel é enviar o arquivo
+              ZPL direto para a impressora (botão "Baixar ZPL"), sem passar por
               PDF.
             </p>
 
@@ -454,13 +454,13 @@ export function LabelConverter() {
                 </a>
               </div>
               <iframe
-                title="Pre-visualizacao das etiquetas"
+                title="Pré-visualização das etiquetas"
                 src={pdfUrl}
                 className="h-[28rem] w-full rounded-md border border-border bg-surface"
               />
               <p className="text-xs text-muted-foreground">
                 Ao imprimir, escolha "Tamanho real" / 100% e o papel 10x15 cm.
-                Evite "Ajustar a pagina", que reduz a etiqueta e deixa o texto
+                Evite "Ajustar a página", que reduz a etiqueta e deixa o texto
                 apagado.
               </p>
             </div>

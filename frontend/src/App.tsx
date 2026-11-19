@@ -27,7 +27,7 @@ type Tab = {
 };
 
 const TABS: Tab[] = [
-  { id: "inicio", label: "Inicio" },
+  { id: "inicio", label: "Início" },
   { id: "amazon", label: "Amazon" },
   { id: "shopee", label: "Shopee" },
   { id: "mercado-livre", label: "Mercado Livre" },

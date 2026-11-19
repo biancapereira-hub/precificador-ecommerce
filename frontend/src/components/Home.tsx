@@ -23,56 +23,56 @@ const TOOLS: Tool[] = [
     id: "amazon",
     title: "Calculadora Amazon",
     description:
-      "Comissao por categoria e frete por faixa de preco e peso. Calcula valor liquido e proporcao sobre o custo.",
+      "Comissão por categoria e frete por faixa de preço e peso. Calcula valor líquido e proporção sobre o custo.",
     available: true,
   },
   {
     id: "shopee",
     title: "Calculadora Shopee",
     description:
-      "Tarifa por faixa de preco (percentual + valor fixo). Mostra valor liquido e proporcao sobre o custo.",
+      "Tarifa por faixa de preço (percentual + valor fixo). Mostra valor líquido e proporção sobre o custo.",
     available: true,
   },
   {
     id: "mercado-livre",
     title: "Calculadora Mercado Livre",
     description:
-      "Anuncio Classico ou Premium, com comissao, custo fixo e frete editaveis por categoria.",
+      "Anúncio Clássico ou Premium, com comissão, custo fixo e frete editáveis por categoria.",
     available: true,
   },
   {
     id: "tiktok",
     title: "Calculadora Tik Tok",
     description:
-      "Comissao do TikTok Shop por faixa (abaixo de R$ 50 ou acima), Programa de Frete e outros custos. Sugere o preco para a proporcao alvo.",
+      "Comissão do TikTok Shop por faixa (abaixo de R$ 50 ou acima), Programa de Frete e outros custos. Sugere o preço para a proporção alvo.",
     available: true,
   },
   {
     id: "simplificada",
     title: "Calculadora simplificada",
     description:
-      "Ja descontou as taxas? Informe so o custo e o valor que vai receber para ver a proporcao liquido / custo.",
+      "Já descontou as taxas? Informe só o custo e o valor que vai receber para ver a proporção líquido / custo.",
     available: true,
   },
   {
     id: "etiquetas",
     title: "Etiquetas (ZPL para PDF)",
     description:
-      "Converta o codigo ZPL ou um arquivo em PDF pronto para impressao das etiquetas de envio.",
+      "Converta o código ZPL ou um arquivo em PDF pronto para impressão das etiquetas de envio.",
     available: true,
   },
   {
     id: "como-precificar",
     title: "Como Precificar?",
     description:
-      "Guia completo sobre o que considerar ao definir precos: custos, taxas por plataforma, margem de lucro e dicas praticas.",
+      "Guia completo sobre o que considerar ao definir preços: custos, taxas por plataforma, margem de lucro e dicas práticas.",
     available: true,
   },
   {
     id: "pesquisa",
     title: "Pesquisa de produto",
     description:
-      "A partir do nome do produto, busca dados para o cadastro: titulo com SEO, medidas, peso, descricao e materiais.",
+      "A partir do nome do produto, busca dados para o cadastro: título com SEO, medidas, peso, descrição e materiais.",
     badge: "em breve",
     available: false,
   },
@@ -84,7 +84,7 @@ export function Home({ onNavigate }: { onNavigate: (id: ToolId) => void }) {
       <PageHeader
         eyebrow="Precifica"
         title="Ferramentas da equipe"
-        description="Escolha uma ferramenta para comecar. As calculadoras seguem as regras de cada marketplace e a conversao de etiquetas gera PDFs prontos para impressao."
+        description="Escolha uma ferramenta para começar. As calculadoras seguem as regras de cada marketplace e a conversão de etiquetas gera PDFs prontos para impressão."
       />
 
       <div className="grid gap-5 sm:grid-cols-2">
